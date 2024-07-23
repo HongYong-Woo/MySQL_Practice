@@ -40,6 +40,7 @@ create table campingcar(
     campingcar_number varchar(15) unique not null comment '캠핑카차량번호',
     campingcar_passengernum int unique not null comment '캠핑카승차인원',
     campingcar_image varchar(50) comment '캠핑카이미지',
+    campingcar_information varchar(50) comment '캠핑카상세정보',
     campingcar_price int unique not null comment '캠핑카대여비용',
     campingcar_regi_date date not null comment '캠핑카등록일자'
 );
