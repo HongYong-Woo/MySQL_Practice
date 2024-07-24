@@ -55,7 +55,7 @@ create table carrent(
     Rental_period int unsigned not null comment '대여기간',
     billing_price int unsigned not null comment '청구요금',
     payment_due_date date unique not null comment '납입기한',
-    Other_billing varchar(50) comment '기타청구내역',
+    other_billing varchar(50) comment '기타청구내역',
     other_price int comment '기타청구요금',
     primary key(rentnumber)
 );
