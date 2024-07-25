@@ -9,6 +9,8 @@ select departments.department_name 부서이름, locations.city
 from departments, locations
 where departments.location_id = locations.location_id and departments.department_id = 80;
 
+
+
 -- 3.커미션을 받는 사원의 이름, 부서이름, 위치번호와 도시명을 조회하세요.
 select concat(employees.first_name, ' ', employees.last_name) 사원이름, departments.department_name 부서이름, locations.location_id 지역번호,locations.city 지역명
 from employees, departments, locations
@@ -31,8 +33,7 @@ where e.manager_id = m.employee_id;
 
 -- 7. 사장인'King'을 포함하여 관리자가 없는 모든 사원을 조회하세요 (사원번호를 기준으로 정렬하세요)
 select e1.employee_id 사원번호,concat(e1.first_name, ' ', e1.last_name) 이름
-from employees e1 left outer join employees as e2 
-on e1.manager_id = e2.employee_id
+from employees e1
 where e1.manager_id is null;
 
 -- 8. 지정한 사원의 이름, 부서 번호 와 지정한 사원과 동일한 부서에서 근무하는 모든 사원을 조회하세요
@@ -44,10 +45,9 @@ select last_name from employees;
 
 -- 9. JOB_GRADRES 테이블을 생성하고 모든 사원의 이름, 업무,부서이름, 급여 , 급여등급을 조회하세요
 select concat(e.first_name, ' ', e.last_name) 사원이름, j.job_title 엄무명, d.department_name 부서이름, e.salary 급여, g.grade_level 급여등급
-from employees e
-inner join departments d on e.department_id = d.department_id 
-inner join jobs j on e.job_id = j.job_id
-left join job_grades g on e.salary between g.lowest_sal and g.highest_sal;
+FROM employees e, jobs j, departments d, job_grades g
+WHERE e.department_id = d.department_id and e.job_id = j.job_id and e.salary BETWEEN g.lowest_sal AND g.highest_sal
+ORDER BY g.grade_level desc;
 
 
 
